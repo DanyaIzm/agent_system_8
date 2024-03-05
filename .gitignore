@@ -4,3 +4,5 @@ venv
 plots/
 
 stat.csv
+
+.ruff_cache
