@@ -1,7 +1,6 @@
-import time
-from game_object import GameObject
 from random import random
 
+from game_object import GameObject
 
 _FOOD_SPAWN_PROBABILITIES = {
     1: 0.4,

@@ -1,12 +1,10 @@
 from abc import ABC, abstractmethod
 from copy import deepcopy
-from random import randint, choice
 from math import copysign
-import time
+from random import choice
+
 from abstract_scene import AbstractScene
-
 from game_object import GameObject
-
 
 # oxo
 # xox

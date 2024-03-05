@@ -1,7 +1,4 @@
-from abc import ABC
-
-
-class GameObject(ABC):
+class GameObject:
     def __init__(self, coords: tuple[int, int]) -> None:
         self._coords = coords
 

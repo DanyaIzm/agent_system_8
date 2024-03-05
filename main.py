@@ -1,11 +1,7 @@
-from agent import Agent, AgentFactory
-from cli import CliAgentGame
 from csv_dumper import CSVDumper
 from data_dumper import DataDumper
-from food import FoodFactory
 from game import Game
 from pygame_client import PygameClient
-from scene import Scene
 
 
 class DumperMock(DataDumper):

@@ -1,7 +1,8 @@
 import csv
-import os
-from data_dumper import DataDumpInfo, DataDumper
 import dataclasses
+import os
+
+from data_dumper import DataDumper, DataDumpInfo
 
 
 class CSVDumper(DataDumper):

@@ -1,13 +1,10 @@
-from itertools import permutations, product
+from itertools import product
 from random import choice
-import time
-from abstract_scene import AbstractScene
-from typing import Protocol
 
+from abstract_scene import AbstractScene
 from agent import Agent
 from food import Food
 from game_object import GameObject
-
 
 # [1, 2, 3]
 # [4, x, 5]

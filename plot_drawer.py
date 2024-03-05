@@ -1,9 +1,9 @@
 import csv
-from dataclasses import fields
-
-from typing import Any
-import matplotlib.pyplot as plt
 import os
+from dataclasses import fields
+from typing import Any
+
+import matplotlib.pyplot as plt
 
 from data_dumper import DataDumpInfo
 

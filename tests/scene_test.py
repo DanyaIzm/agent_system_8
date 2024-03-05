@@ -2,7 +2,6 @@ import unittest
 
 from scene import Scene
 
-
 scene = Scene()
 
 

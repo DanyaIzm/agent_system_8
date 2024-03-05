@@ -1,6 +1,6 @@
 from typing import NoReturn
-from agent import Agent, AgentFactory
 
+from agent import AgentFactory
 from data_dumper import DataDumper, DataDumpInfo
 from food import FoodFactory
 from graphical_client import GraphicalClient

@@ -25,7 +25,8 @@ class GraphicalClient(ABC):
         MUST be overridden by subclasses
 
         Raises:
-            NoSceneProvidedException: scene shoud be set by contructor or set_scene method
+            NoSceneProvidedException: scene shoud be set by contructor
+            or set_scene method
         """
         if not self._scene:
             raise NoSceneProvidedException("Scene was not provided to graphical client")

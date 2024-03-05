@@ -1,5 +1,6 @@
 import os
 import time
+
 from abstract_scene import AbstractScene
 from agent import Agent
 from food import Food
@@ -29,7 +30,7 @@ class CliAgentGame(GraphicalClient):
                     agents_count += 1
                     agents.append(obj)
                 else:
-                    print(f"  ", end="")
+                    print("  ", end="")
 
             print("]\n", end="")
 

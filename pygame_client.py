@@ -1,9 +1,11 @@
+from functools import cache
+
 import pygame
+
 from abstract_scene import AbstractScene
 from agent import Agent
 from food import Food
 from graphical_client import GraphicalClient
-from functools import cache
 
 
 class PygameClient(GraphicalClient):
@@ -136,15 +138,6 @@ class PygameClient(GraphicalClient):
                         obj_circle.topleft[1] - circle_radius // 2,
                     ),
                 )
-
-        most_experienced_agent = (
-            max(agents, key=lambda a: a.get_level()) if agents else None
-        )
-        max_agents_level = (
-            str(most_experienced_agent.get_level())
-            if most_experienced_agent
-            else "NO ALIVE"
-        )
 
     def _draw_gui(self) -> None:
         font = self._get_gui_font()
