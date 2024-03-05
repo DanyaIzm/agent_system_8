@@ -6,32 +6,6 @@ from agent import Agent
 from food import Food
 from game_object import GameObject
 
-# [1, 2, 3]
-# [4, x, 5]
-# [6, 7, 8]
-_SQUARE_COORDS_SUMMANDS = [
-    # 1
-    (-1, -1),
-    # 2
-    (0, -1),
-    # 3
-    (1, -1),
-    # 4
-    (0, -1),
-    # 5
-    (0, 1),
-    # 6
-    (1, -1),
-    # 7
-    (1, 0),
-    # 8
-    (1, 1),
-]
-
-
-# class Updatable(Protocol):
-#     def update(self) -> None: ...
-
 
 def _is_in_bound(value, max_value) -> bool:
     return value >= 0 and value < max_value
