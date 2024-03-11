@@ -1,3 +1,4 @@
+from cli import CliAgentGame
 from csv_dumper import CSVDumper
 from data_dumper import DataDumper
 from game import Game

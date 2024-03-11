@@ -18,6 +18,8 @@ class Game:
         self._scene = None
 
     def run(self) -> NoReturn:
+        """Run the simulation"""
+
         self._scene = Scene()
 
         self._graphical_client.set_scene(self._scene)
