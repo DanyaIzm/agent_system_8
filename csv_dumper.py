@@ -6,6 +6,8 @@ from data_dumper import DataDumper, DataDumpInfo
 
 
 class CSVDumper(DataDumper):
+    """Dumps data to csv file"""
+
     def __init__(self, file_path: str) -> None:
         self._file_path = file_path
 
@@ -18,7 +20,6 @@ class CSVDumper(DataDumper):
         self._csvwriter.writeheader()
 
     def dump(self, data: DataDumpInfo) -> None:
-        print([data.eaten_agents, data.spawned_agents])
         self._csvwriter.writerow(dataclasses.asdict(data))
 
     def close(self) -> None:

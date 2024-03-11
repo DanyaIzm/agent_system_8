@@ -22,17 +22,39 @@ class AgentFactory:
         scene.add_factory(self)
 
     def spawn_radom(self, amount: int) -> None:
+        """
+        Spawn amount of agents at random positions
+
+        Args:
+            amount (int): amount of agents to spawn
+        """
         for _ in range(amount):
             coords = self._scene.get_random_empty_cell()
             self.spawn(coords)
 
     def spawn(self, coords: tuple[int, int], agent=None):
+        """
+        Create an agent at given location
+
+        Args:
+            coords (tuple[int, int]): coordinates of the new agent
+            agent (_type_, optional): Agent if is was created by another entity. Defaults to None.
+        """
         if not agent:
             agent = Agent(coords, self._scene, self)
 
         self._scene.add_game_object(agent, coords)
 
     def spawn_from(self, agent):
+        """
+        Spawn agent from another agent to set it's level like parent's
+
+        Args:
+            agent (_type_): parent agent
+
+        Raises:
+            UnableToSpawnException: can't spawn agent near parent agent
+        """
         self._scene.increment_spawned_from()
 
         square_coords = self._scene.get_square_coords(agent._coords)
@@ -75,30 +97,82 @@ class Agent(GameObject):
         self.update_state()
 
     def get_saturation(self) -> float:
+        """
+        Get level of saturation
+
+        Returns:
+            float: saturation of the agent
+        """
         return self._saturation
 
     def get_level(self) -> int:
+        """
+        Get experience level of the agent
+
+        Returns:
+            int: level of the agent
+        """
         return self._level
 
     def get_experience(self) -> int:
+        """
+        Get amount of experience of the agent
+
+        Returns:
+            int: amount of experience of the agent
+        """
         return self._experience
 
     def get_exp_requirement(self) -> int:
+        """
+        Get amount of required experience of the agent to levelup
+
+        Returns:
+            int: amount of requred experience
+        """
         return self._level * 10
 
     def get_max_saturation(self) -> float:
+        """
+        Get max volume of agent's "stomach"
+
+        Returns:
+            float: maximum level of agent's saturation
+        """
         return self.get_exp_requirement()
 
     def get_fov(self) -> int:
+        """
+        Get agent's field of view (which is square radius)
+
+        Returns:
+            int: _description_
+        """
         return 3 + self._level
 
     def get_waitng_hunger(self) -> float:
+        """
+        Get amount of saturation points of the agent to spend for standing without moving
+
+        Returns:
+            float: waiting saturation
+        """
         return self.get_exhaustion() / 4
 
     def get_exhaustion(self) -> float:
+        """
+        Get amount of saturation points of the agent to spend for moving
+
+        Returns:
+            float: moving saturation
+        """
         return (0.12 * self._level) / 4
 
     def update_state(self) -> None:
+        """
+        Change agent's state
+        """
+
         max_saturation = self.get_max_saturation()
 
         if max_saturation * 0.8 <= self._saturation <= max_saturation:
@@ -111,6 +185,9 @@ class Agent(GameObject):
             self._state = AgentDeadState(self)
 
     def _levelup(self) -> None:
+        """
+        Increase agent's level by on
+        """
         self._level += 1
 
     def _can_move(self, vector) -> bool:
@@ -119,6 +196,12 @@ class Agent(GameObject):
         return self._scene.is_cell_empty(coords)
 
     def _walk_to(self, coords: tuple[int, int]) -> None:
+        """
+        Walk to the given coordinates
+
+        Args:
+            coords (tuple[int, int]): coordinates of the destinaiton
+        """
         cant_move = False
 
         delta_x = abs(coords[0] - self._coords[0])
@@ -150,6 +233,10 @@ class Agent(GameObject):
             self._walk_random()
 
     def _choose_radom_walk_vector(self) -> None:
+        """
+        Get radom direction to walk to
+        """
+
         vectors = deepcopy(_WALKING_VECTORS)
 
         while vectors:
@@ -170,6 +257,9 @@ class Agent(GameObject):
         self._random_walk_vector = (0, 0)
 
     def _walk_random(self) -> None:
+        """
+        Walk in a random direction
+        """
         while True:
             if not self._random_walk_vector:
                 self._choose_radom_walk_vector()
@@ -190,6 +280,9 @@ class Agent(GameObject):
             self._random_walk_vector = None
 
     def update(self) -> None:
+        """
+        Make agents to act
+        """
         last_coords = self._coords
 
         # try eat another agent
@@ -238,11 +331,17 @@ class Agent(GameObject):
 
 
 class AgentState(ABC):
+    """Abstract agent's state"""
+
     def __init__(self, agent: Agent) -> None:
         self._agent = agent
 
     @abstractmethod
-    def update(self) -> None: ...
+    def update(self) -> None:
+        """
+        Update agent's internal state according to current agent state
+        """
+        ...
 
 
 class AgentSaturatedState(AgentState):

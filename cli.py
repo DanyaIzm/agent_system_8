@@ -8,6 +8,8 @@ from graphical_client import GraphicalClient
 
 
 class CliAgentGame(GraphicalClient):
+    """Console line graphical client"""
+
     def __init__(self, scene: AbstractScene = None) -> None:
         super().__init__(scene)
 
